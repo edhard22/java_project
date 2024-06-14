@@ -29,27 +29,18 @@ public class Main {
         if (checkRomeIntegers(num1) && checkRomeIntegers(num2)) {
             Integer numInt1 = romeToInteger(num1);
             Integer numInt2 = romeToInteger(num2);
-
             Integer result = calcProcessing(numInt1, numInt2, operator);
 
             if (result < 0) {
-                throw new Exception("В римских числах нет отрицательных чисел\n");
+                throw new Exception("В римских числах нет отрицательных чисел!\n");
+            } else if (result == 0) {
+                throw new Exception("В римских числах нет нуля!\n");
             }
-
-            // Костыль который не пригодился
-            // String romeResult = Integer.toString(result);
-            // String[] romeResultArguments = romeResult.split(" ");
-            // String romeResultOut = "";
-            // for(String i: romeResultArguments) {
-            //     Integer iToRome = Integer.valueOf(i);
-            //     String rome = integerToRome(iToRome);
-            //     romeResultOut += rome;
-            // }
 
             String romeResultOut = integerToRome(result);
             return romeResultOut;
         } else if (checkRomeIntegers(num1) || checkRomeIntegers(num2)) {
-            throw new Exception("Используются арабские и римские числа вместе!\n");
+            throw new Exception("Используется неправильное значение числа!\n");
         } else {
             Integer numInt1 = Integer.valueOf(num1);
             Integer numInt2 = Integer.valueOf(num2);
@@ -59,7 +50,8 @@ public class Main {
         }
     }
 
-    public static Integer calcProcessing(Integer numInt1, Integer numInt2, String operator) {
+    public static Integer calcProcessing(Integer numInt1, Integer numInt2, String operator) throws Exception {
+        // Метод для вычисления выражения
         int result = 0;
         switch (operator) {
             case "+": result = numInt1 + numInt2;
@@ -70,39 +62,21 @@ public class Main {
                 break;
             case "/": result = numInt1 / numInt2;
                 break;
+            case "%": throw new Exception("Неправильное математическое выражение или операнд!\n");
         }
-
         return result;
 }
 
     public static Boolean checkRomeIntegers(String input) {
         // Метод для проверки есть ли в выражении римские числа
-        Boolean result;
-        switch (input) {
-            case "I": result = true;
-                break;
-            case "II": result = true;
-                break;
-            case "III": result = true;
-                break;
-            case "IV": result = true;
-                break;
-            case "V": result = true;
-                break;
-            case "VI": result = true;
-                break;
-            case "VII": result = true;
-                break;
-            case "VIII": result = true;
-                break;
-            case "IX": result = true;
-                break;
-            case "X": result = true;
-                break;
-            default: result = false;
+        // Сделал более оптимально
+        String[] numbers = new String[] {"I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"};
+        for(String n: numbers) {
+            if (n.equals(input)) {
+                return true;
+            }
         }
-
-        return result;
+        return false;
     }   
 
     public static Integer romeToInteger(String rome) {
@@ -130,7 +104,6 @@ public class Main {
             case "X": result = 10;
                 break;
         }
-        
         return result;
     }
 
@@ -159,8 +132,6 @@ public class Main {
             case 10: out = "X";
                 break;
         }
-        
         return out;
-
     }
 }
