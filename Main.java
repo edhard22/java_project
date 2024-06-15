@@ -29,6 +29,12 @@ public class Main {
         if (checkRomeIntegers(num1) && checkRomeIntegers(num2)) {
             Integer numInt1 = romeToInteger(num1);
             Integer numInt2 = romeToInteger(num2);
+            if (numInt1 == 0 || numInt2 == 0) {
+                throw new Exception("Используется неправильное значение числа!\n");
+            } else if (numInt1 > 10 || numInt2 > 10) {
+                throw new Exception("Используется неправильное значение числа!\n");
+            }
+
             Integer result = calcProcessing(numInt1, numInt2, operator);
 
             if (result < 0) {
@@ -44,6 +50,12 @@ public class Main {
         } else {
             Integer numInt1 = Integer.valueOf(num1);
             Integer numInt2 = Integer.valueOf(num2);
+            if (numInt1 == 0 || numInt2 == 0) {
+                throw new Exception("Используется неправильное значение числа!\n");
+            } else if (numInt1 > 10 || numInt2 > 10) {
+                throw new Exception("Используется неправильное значение числа!\n");
+            }
+
             Integer result = calcProcessing(numInt1, numInt2, operator);
             String intResult = Integer.toString(result);
             return intResult;
