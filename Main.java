@@ -137,7 +137,7 @@ public class Main {
         }
     }
 
-    public static oneDecimalToRome(Integer num) {
+    public static String oneDecimalToRome(Integer num) {
         String out = "";
         switch (num) {
             case 1 : out = "I" ;
@@ -162,7 +162,7 @@ public class Main {
         return out;
     }
 
-    public static tenDecimalToRome(Integer num) {
+    public static String tenDecimalToRome(Integer num) {
         String out = "";
         switch (num) {
             case 1 : out = "X" ;
