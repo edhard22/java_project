@@ -9,7 +9,7 @@ public class Main {
 
         try {
             String result = calc(input);
-            System.out.printf("Результат выполнения выражения: %s\n", result);
+            System.out.printf(result);
         } catch (Exception e) {
             System.out.printf("Не удалось выполнить выражение! %s", e);
         }
@@ -29,7 +29,7 @@ public class Main {
         if (checkRomeIntegers(num1) && checkRomeIntegers(num2)) {
             Integer numInt1 = romeToInteger(num1);
             Integer numInt2 = romeToInteger(num2);
-            if (numInt1 == 0 || numInt2 == 0) {
+            if (numInt1 < 1 || numInt2 < 1) {
                 throw new Exception("Используется неправильное значение числа!\n");
             } else if (numInt1 > 10 || numInt2 > 10) {
                 throw new Exception("Используется неправильное значение числа!\n");
@@ -50,7 +50,7 @@ public class Main {
         } else {
             Integer numInt1 = Integer.valueOf(num1);
             Integer numInt2 = Integer.valueOf(num2);
-            if (numInt1 == 0 || numInt2 == 0) {
+            if (numInt1 < 1 || numInt2 < 1) {
                 throw new Exception("Используется неправильное значение числа!\n");
             } else if (numInt1 > 10 || numInt2 > 10) {
                 throw new Exception("Используется неправильное значение числа!\n");
@@ -74,7 +74,7 @@ public class Main {
                 break;
             case "/": result = numInt1 / numInt2;
                 break;
-            case "%": throw new Exception("Неправильное математическое выражение или операнд!\n");
+            default: throw new Exception("Неправильное математическое выражение или операнд!\n");
         }
         return result;
 }
@@ -120,30 +120,71 @@ public class Main {
     }
 
     public static String integerToRome(Integer num) {
-        // Метод для преобразования обычных чисел в римские
+        String out = "";
+        if(num < 10){
+            out = oneDecimalToRome(num) ;
+            return out;
+        }
+        else if(num < 100){
+            int tens = num / 10;
+            out = tenDecimalToRome(tens) ;
+            int ones = num % 10;
+            out += oneDecimalToRome(ones);
+            return out;
+        }
+        else if(num = 100){
+            return "C" ;
+        }
+    }
+
+    public static oneDecimalToRome(Integer num) {
         String out = "";
         switch (num) {
-            case 1: out = "I";
+            case 1 : out = "I" ;
                 break;
-            case 2: out = "II";
+            case 2 : out ="II";
                 break;
-            case 3: out = "III";
+            case 3 : out ="III" ;
                 break;
-            case 4: out = "VI";
+            case 4 : out = "IV" ;
                 break;
-            case 5: out = "V";
+            case 5 : out ="V" ;
                 break;
-            case 6: out = "VI";
+            case 6 : out="VI" ;
                 break;
-            case 7: out = "VII";
+            case 7 : out="VII" ;
                 break;
-            case 8: out = "VIII";
+            case 8 : out="VIII" ;
                 break;
-            case 9: out = "IX";
+            case 9 : out="IX" ;
                 break;
-            case 10: out = "X";
+        }
+        return out;
+    }
+
+    public static tenDecimalToRome(Integer num) {
+        String out = "";
+        switch (num) {
+            case 1 : out = "X" ;
+                break;
+            case 2 : out ="XX";
+                break;
+            case 3 : out ="XXX" ;
+                break;
+            case 4 : out = "XL" ;
+                break;
+            case 5 : out ="L" ;
+                break;
+            case 6 : out="LX" ;
+                break;
+            case 7 : out="LXX" ;
+                break;
+            case 8 : out="LXXX" ;
+                break;
+            case 9 : out="XC" ;
                 break;
         }
         return out;
     }
 }
+
