@@ -3,13 +3,13 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Выведите математическое выражение: ");
+        System.out.print("Выведите математическое выражение: \n");
         String input = scanner.nextLine();
         scanner.close();
 
         try {
             String result = calc(input);
-            System.out.printf(result);
+            System.out.println(result);
         } catch (Exception e) {
             System.out.printf("Не удалось выполнить выражение! %s", e);
         }
@@ -123,18 +123,17 @@ public class Main {
         String out = "";
         if(num < 10){
             out = oneDecimalToRome(num) ;
-            return out;
         }
         else if(num < 100){
             int tens = num / 10;
             out = tenDecimalToRome(tens) ;
             int ones = num % 10;
             out += oneDecimalToRome(ones);
-            return out;
         }
-        else if(num = 100){
-            return "C" ;
+        else if(num == 100){
+            out = "C";
         }
+        return out;
     }
 
     public static String oneDecimalToRome(Integer num) {
